@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D9ADC98247BE3CB0062A2F4 /* libMobilePayManager2.2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9ADC97247BE3CB0062A2F4 /* libMobilePayManager2.2.0.a */; };
 		C75168EC1EE4BD8000703F14 /* RNMobilePay.m in Sources */ = {isa = PBXBuildFile; fileRef = C75168E81EE4BD8000703F14 /* RNMobilePay.m */; };
 		C75168ED1EE4BD8000703F14 /* RNMobilePayHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C75168EA1EE4BD8000703F14 /* RNMobilePayHandler.m */; };
-		C755F9321EE585B800CFE7C2 /* libMobilePayManager1.8.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C755F92D1EE5858D00CFE7C2 /* libMobilePayManager1.8.1.a */; };
 		C7A004481EE58974003C8D8E /* RCTConvert+MobilePayCountry.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A004471EE58974003C8D8E /* RCTConvert+MobilePayCountry.m */; };
 		C7A0044B1EE58A09003C8D8E /* RCTConvert+MobilePayCaptureType.m in Sources */ = {isa = PBXBuildFile; fileRef = C7A0044A1EE58A09003C8D8E /* RCTConvert+MobilePayCaptureType.m */; };
 /* End PBXBuildFile section */
@@ -28,11 +28,11 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libRNMobilePay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNMobilePay.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D9ADC97247BE3CB0062A2F4 /* libMobilePayManager2.2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobilePayManager2.2.0.a; sourceTree = "<group>"; };
 		C75168E81EE4BD8000703F14 /* RNMobilePay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMobilePay.m; sourceTree = "<group>"; };
 		C75168E91EE4BD8000703F14 /* RNMobilePay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMobilePay.h; sourceTree = "<group>"; };
 		C75168EA1EE4BD8000703F14 /* RNMobilePayHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNMobilePayHandler.m; sourceTree = "<group>"; };
 		C75168EB1EE4BD8000703F14 /* RNMobilePayHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNMobilePayHandler.h; sourceTree = "<group>"; };
-		C755F92D1EE5858D00CFE7C2 /* libMobilePayManager1.8.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobilePayManager1.8.1.a; sourceTree = "<group>"; };
 		C755F92E1EE5858D00CFE7C2 /* MobilePayCancelledPayment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobilePayCancelledPayment.h; sourceTree = "<group>"; };
 		C755F92F1EE5858D00CFE7C2 /* MobilePayManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobilePayManager.h; sourceTree = "<group>"; };
 		C755F9301EE5858D00CFE7C2 /* MobilePayPayment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobilePayPayment.h; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C755F9321EE585B800CFE7C2 /* libMobilePayManager1.8.1.a in Frameworks */,
+				7D9ADC98247BE3CB0062A2F4 /* libMobilePayManager2.2.0.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 		C755F92C1EE5858D00CFE7C2 /* MobilePayManager */ = {
 			isa = PBXGroup;
 			children = (
-				C755F92D1EE5858D00CFE7C2 /* libMobilePayManager1.8.1.a */,
+				7D9ADC97247BE3CB0062A2F4 /* libMobilePayManager2.2.0.a */,
 				C755F92E1EE5858D00CFE7C2 /* MobilePayCancelledPayment.h */,
 				C755F92F1EE5858D00CFE7C2 /* MobilePayManager.h */,
 				C755F9301EE5858D00CFE7C2 /* MobilePayPayment.h */,
@@ -130,6 +130,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;

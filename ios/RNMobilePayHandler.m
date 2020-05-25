@@ -54,7 +54,7 @@
     _merchantId = merchantId;
 }
 
-- (void)createPayment:(NSString *)orderId productPrice:(float)productPrice resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject
+- (void)createPayment:(NSString *)orderId productPrice:(double)productPrice resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject
 {
     if (!_hasBeenSetup) {
         reject(@"-1", @"MobilePay has not been setup. Please call setup(merchantId, country, merchantUrlScheme) first.", nil);
@@ -62,16 +62,16 @@
     }
     
     [[MobilePayManager sharedInstance] setupWithMerchantId:_merchantId merchantUrlScheme:_merchantUrlScheme country:_country];
-    
-    MobilePayPayment *payment = [[MobilePayPayment alloc] initWithOrderId:orderId productPrice:productPrice];
+
+    MobilePayPayment *payment = [[MobilePayPayment alloc] initWithOrderId:orderId productPrice:[[NSDecimalNumber alloc] initWithDouble:productPrice]];
 
     _resolveBlock = [resolve copy];
     _rejectBlock = [reject copy];
 
-    [[MobilePayManager sharedInstance] beginMobilePaymentWithPayment:payment error:^(NSError * _Nonnull error) {
-        NSLog(@"beginMobilePaymentWithPayment - error %@", error);
+    [[MobilePayManager sharedInstance] beginMobilePaymentWithPayment:payment error:^(MobilePayErrorPayment * _Nullable mobilePayErrorPayment) {
+        NSLog(@"beginMobilePaymentWithPayment - error %@", mobilePayErrorPayment.error);
         
-        [self handleOnError:error];
+        [self handleOnError:mobilePayErrorPayment.error];
         [self cleanupHandlers];
     }];
 }
@@ -97,7 +97,8 @@
         });
 
         [self cleanupHandlers];
-    } error:^(NSError * _Nonnull error) {
+    } error:^(MobilePayErrorPayment * _Nullable mobilePayErrorPayment) {
+        NSError *error = mobilePayErrorPayment.error;
         NSDictionary *dict = error.userInfo;
         NSString *errorMessage = [dict valueForKey:NSLocalizedFailureReasonErrorKey];
         NSLog(@"MobilePay purchase failed:  Error code '%li' and message '%@' %@",(long)error.code, errorMessage, error);
@@ -130,7 +131,7 @@
 - (void)handleOnError:(NSError *)error {
     if (_rejectBlock) {
         NSString *message = [NSString stringWithFormat:@"%@: %@", error.localizedDescription, error.localizedFailureReason];
-       _rejectBlock([NSString stringWithFormat:@"%d", error.code], message, error);
+        _rejectBlock([NSString stringWithFormat:@"%ld", (long)error.code], message, error);
     }
 }
 

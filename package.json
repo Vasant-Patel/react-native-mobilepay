@@ -1,8 +1,40 @@
 {
-  "name": "react-native-mobilepay",
-  "version": "1.2.0",
+  "_args": [
+    [
+      "github:Vasant-Patel/react-native-mobilepay#bugfix/header-search-paths",
+      "/Users/vpat/vr-mobile-ng"
+    ]
+  ],
+  "_from": "github:Vasant-Patel/react-native-mobilepay#bugfix/header-search-paths",
+  "_id": "react-native-mobilepay@github:Vasant-Patel/react-native-mobilepay#a73802e8108c99ba53b89c51c7d22316f656be43",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/react-native-mobilepay",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "github:Vasant-Patel/react-native-mobilepay#bugfix/header-search-paths",
+    "rawSpec": "github:Vasant-Patel/react-native-mobilepay#bugfix/header-search-paths",
+    "saveSpec": "github:Vasant-Patel/react-native-mobilepay#bugfix/header-search-paths",
+    "fetchSpec": null,
+    "gitCommittish": "bugfix/header-search-paths"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "github:Vasant-Patel/react-native-mobilepay#a73802e8108c99ba53b89c51c7d22316f656be43",
+  "_spec": "github:Vasant-Patel/react-native-mobilepay#bugfix/header-search-paths",
+  "_where": "/Users/vpat/vr-mobile-ng",
+  "author": {
+    "name": "Mads Lee Jensen",
+    "email": "madsleejensen@gmail.com",
+    "url": "http://mads-lee.dk"
+  },
+  "bugs": {
+    "url": "https://github.com/MobilePayDev/MobilePay-AppSwitch-SDK/issues"
+  },
   "description": "React-Native Bindings for Danske Bank Mobilepay AppSwitch iOS + Android",
-  "main": "index.js",
+  "homepage": "https://github.com/MobilePayDev/MobilePay-AppSwitch-SDK#readme",
   "keywords": [
     "react-native",
     "mobilepay",
@@ -11,17 +43,15 @@
     "mobilepay-appswitch",
     "appswitch"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/MobilePayDev/MobilePay-AppSwitch-SDK"
-  },
-  "author": {
-    "name": "Mads Lee Jensen",
-    "email": "madsleejensen@gmail.com",
-    "url": "http://mads-lee.dk"
-  },
   "license": "since we bundle MobilePay-AppSwitch-SDK see: https://github.com/MobilePayDev/MobilePay-AppSwitch-SDK/blob/master/LICENSE",
+  "main": "index.js",
+  "name": "react-native-mobilepay",
   "peerDependencies": {
     "react-native": ">=0.47.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MobilePayDev/MobilePay-AppSwitch-SDK.git"
+  },
+  "version": "2.0.0"
 }

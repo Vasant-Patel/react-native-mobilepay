@@ -3,13 +3,13 @@ package dk.madslee.mobilepay;
 import android.app.Activity;
 import android.content.Intent;
 import com.facebook.react.bridge.*;
-import dk.danskebank.mobilepay.sdk.CaptureType;
-import dk.danskebank.mobilepay.sdk.Country;
-import dk.danskebank.mobilepay.sdk.MobilePay;
-import dk.danskebank.mobilepay.sdk.ResultCallback;
-import dk.danskebank.mobilepay.sdk.model.FailureResult;
-import dk.danskebank.mobilepay.sdk.model.Payment;
-import dk.danskebank.mobilepay.sdk.model.SuccessResult;
+import dk.mobilepay.sdk.CaptureType;
+import dk.mobilepay.sdk.Country;
+import dk.mobilepay.sdk.MobilePay;
+import dk.mobilepay.sdk.ResultCallback;
+import dk.mobilepay.sdk.model.FailureResult;
+import dk.mobilepay.sdk.model.Payment;
+import dk.mobilepay.sdk.model.SuccessResult;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -20,10 +20,10 @@ public class RNMobilePayModule extends ReactContextBaseJavaModule {
     private static final int MOBILEPAY_PAYMENT_REQUEST_CODE = 1001;
     private boolean mHasBeenSetup = false;
     private String mMerchantId = "APPDK0000000000";
-    private Country mCountry = Country.DENMARK;
+    private Country mCountry = Country.FINLAND;
     private int mReturnSeconds = 1;
     private int mTimeoutSeconds = 90;
-    private CaptureType mCaptyreType = CaptureType.CAPTURE;
+    private CaptureType mCaptyreType = CaptureType.RESERVE;
     private Promise mPaymentPromise;
     private Payment mPayment;
 
@@ -54,12 +54,12 @@ public class RNMobilePayModule extends ReactContextBaseJavaModule {
                         cleanUp();
                     }
                     @Override
-                    public void onCancel() {
+                    public void onCancel(String orderId) {
                         // The payment was cancelled.
 
                         WritableMap map = Arguments.createMap();
                         map.putBoolean("isCancelled", true);
-                        map.putString("orderId", mPayment.getOrderId());
+                        map.putString("orderId", orderId);
 
                         mPaymentPromise.resolve(map);
 
@@ -105,7 +105,6 @@ public class RNMobilePayModule extends ReactContextBaseJavaModule {
         // to workaround we instead store all the config vars, and before each payment we initialize the mobilepay instance from scratch.
         MobilePay.getInstance().init(mMerchantId, mCountry);
         MobilePay.getInstance().setCaptureType(mCaptyreType);
-        MobilePay.getInstance().setReturnSeconds(mReturnSeconds);
         MobilePay.getInstance().setTimeoutSeconds(mTimeoutSeconds);
 
         mPaymentPromise = promise;
@@ -150,16 +149,13 @@ public class RNMobilePayModule extends ReactContextBaseJavaModule {
     public Map<String, Object> getConstants() {
         final Map<String, Object> constants = new HashMap<>();
 
-        constants.put("CAPTURE_TYPE_CAPTURE", CaptureType.CAPTURE.name());
         constants.put("CAPTURE_TYPE_RESERVE", CaptureType.RESERVE.name());
         constants.put("CAPTURE_TYPE_PARTIALCAPTURE", CaptureType.PARTIAL_CAPTURE.name());
 
         constants.put("COUNTRY_DENMARK", Country.DENMARK.name());
-        constants.put("COUNTRY_NORWAY", Country.NORWAY.name());
         constants.put("COUNTRY_FINLAND", Country.FINLAND.name());
 
         constants.put("isMobilePayInstalledDenmark", MobilePay.getInstance().isMobilePayInstalled(getReactApplicationContext(), Country.DENMARK));
-        constants.put("isMobilePayInstalledNorway", MobilePay.getInstance().isMobilePayInstalled(getReactApplicationContext(), Country.NORWAY));
         constants.put("isMobilePayInstalledFinland", MobilePay.getInstance().isMobilePayInstalled(getReactApplicationContext(), Country.FINLAND));
         return constants;
     }
