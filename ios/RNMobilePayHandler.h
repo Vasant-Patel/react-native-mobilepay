@@ -17,6 +17,6 @@
 - (void)setMerchantId:(NSString *)merchantId;
 
 - (bool)handleMobilePayPaymentWithUrl:(NSURL *)url;
-- (void)createPayment:(NSString *)orderId productPrice:(double)productPrice resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject;
+- (void)createPayment:(NSString *)orderId productPrice:(NSString *)productPrice resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject;
 
 @end

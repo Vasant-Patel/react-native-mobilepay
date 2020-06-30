@@ -23,7 +23,7 @@
     dispatch_once(&onceToken, ^{
         sharedInstance = [[RNMobilePayHandler alloc] init];
     });
-    
+
     return sharedInstance;
 }
 
@@ -34,7 +34,7 @@
         _country = MobilePayCountry_Denmark;
         _merchantUrlScheme = @"";
     }
-    
+
     return self;
 }
 
@@ -42,7 +42,7 @@
     _merchantId = merchantId;
     _country = country;
     _merchantUrlScheme = merchantUrlScheme;
-    
+
     _hasBeenSetup = true;
 }
 
@@ -54,23 +54,23 @@
     _merchantId = merchantId;
 }
 
-- (void)createPayment:(NSString *)orderId productPrice:(double)productPrice resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject
+- (void)createPayment:(NSString *)orderId productPrice:(NSString *)productPrice resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject
 {
     if (!_hasBeenSetup) {
         reject(@"-1", @"MobilePay has not been setup. Please call setup(merchantId, country, merchantUrlScheme) first.", nil);
         return;
     }
-    
+
     [[MobilePayManager sharedInstance] setupWithMerchantId:_merchantId merchantUrlScheme:_merchantUrlScheme country:_country];
 
-    MobilePayPayment *payment = [[MobilePayPayment alloc] initWithOrderId:orderId productPrice:[[NSDecimalNumber alloc] initWithDouble:productPrice]];
+    MobilePayPayment *payment = [[MobilePayPayment alloc] initWithOrderId:orderId productPrice:[[NSDecimalNumber alloc] initWithString:productPrice]];
 
     _resolveBlock = [resolve copy];
     _rejectBlock = [reject copy];
 
     [[MobilePayManager sharedInstance] beginMobilePaymentWithPayment:payment error:^(MobilePayErrorPayment * _Nullable mobilePayErrorPayment) {
         NSLog(@"beginMobilePaymentWithPayment - error %@", mobilePayErrorPayment.error);
-        
+
         [self handleOnError:mobilePayErrorPayment.error];
         [self cleanupHandlers];
     }];
@@ -81,7 +81,7 @@
     if (![url.absoluteString hasPrefix:_merchantUrlScheme]) {
         return false;
     }
-    
+
     [[MobilePayManager sharedInstance] handleMobilePayPaymentWithUrl:url success:^(MobilePaySuccessfulPayment * _Nullable mobilePaySuccessfulPayment) {
         NSString *orderId = mobilePaySuccessfulPayment.orderId;
         NSString *transactionId = mobilePaySuccessfulPayment.transactionId;
@@ -124,7 +124,7 @@
 
         [self cleanupHandlers];
     }];
-    
+
     return true;
 }
 

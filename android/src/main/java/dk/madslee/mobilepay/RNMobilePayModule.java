@@ -96,7 +96,7 @@ public class RNMobilePayModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void createPayment(String orderId, Double productPrice, Promise promise) {
+    public void createPayment(String orderId, String productPrice, Promise promise) {
         if (!mHasBeenSetup) {
             promise.reject("-1", "MobilePay has not been setup. Please call setup(merchantId, country, merchantUrlScheme) first.");
         }
